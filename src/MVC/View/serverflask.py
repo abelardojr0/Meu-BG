@@ -8,7 +8,7 @@ try:
         host="localhost",
         database="Meu_BG",
         user="postgres",
-        password="postgres",
+        password="123",
         port="5432"
     )
     app = Flask(__name__)
@@ -43,7 +43,14 @@ try:
         cur.execute("INSERT INTO usuario (nome, email, senha) VALUES (%s, %s, %s)", (nome, email, senha))
         conn.commit()
         return jsonify({'status': 'success'})
-
+    
+    @app.route('/deletarJogo', methods=['POST'])
+    def deletar_jogo():
+        cur = conn.cursor()
+        id = request.json['id']
+        cur.execute(f"DELETE FROM jogo WHERE id = '{id}'")
+        conn.commit()
+        return jsonify({'status': 'success'})
     
     @app.route('/buscarUsuarios', methods=['GET'])
     def get_tabela():

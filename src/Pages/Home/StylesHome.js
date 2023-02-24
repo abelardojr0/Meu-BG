@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const MeusJogosContainer = styled.section`
+export const HomeMostruarioContainer = styled.section`
   display: grid;
   justify-content: center;
   align-items: center;

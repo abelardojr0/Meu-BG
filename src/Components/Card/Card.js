@@ -16,6 +16,7 @@ import jogadores from "../../Imagens/jogadores.png";
 import relogio from "../../Imagens/relogio.png";
 import idade from "../../Imagens/idade.png";
 import preco from "../../Imagens/preco.png";
+import Skeleton from "react-loading-skeleton";
 
 // const [jogos, setjogos] = React.useState([]);
 
@@ -83,14 +84,15 @@ const Card = (dados) => {
     } else {
       setLoginStatus(true);
     }
-    axios
-      .get("http://localhost:5000/buscarColecao/" + id_logado)
-      .then((response) => {
-        localStorage.setItem("jogos", JSON.stringify(response.data));
-      });
+    // axios
+    //   .get("http://localhost:5000/buscarColecao/" + id_logado)
+    //   .then((response) => {
+    //     localStorage.setItem("jogos", JSON.stringify(response.data));
+    //   });
   }
   return (
     <CardConteiner>
+      <Skeleton height="100%" width="100%" />
       <CardImagem src={dados.imagem} alt="jogo" />
       <CardTitulo>{dados.nome}</CardTitulo>
       <CardListaDetalhes>

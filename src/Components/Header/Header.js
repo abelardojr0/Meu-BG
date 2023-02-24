@@ -85,8 +85,8 @@ const Header = () => {
             {menuAberto && (
               <>
                 <HeaderMenuAberto>
-                  <HeaderItensMenuAberto to="/meuPerfil">
-                    Meu perfil
+                  <HeaderItensMenuAberto to="/minhaColecao">
+                    Minha Coleção
                   </HeaderItensMenuAberto>
                   <HeaderItensMenuAberto>Configurações</HeaderItensMenuAberto>
                   <HeaderItensMenuAberto onClick={deslogar}>

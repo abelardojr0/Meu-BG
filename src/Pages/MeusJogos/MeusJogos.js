@@ -2,14 +2,21 @@ import React from "react";
 import Card from "../../Components/Card/Card";
 import Header from "../../Components/Header/Header";
 import { MeusJogosContainer } from "./StylesMeusJogos";
-
+import axios from "axios";
 const MeusJogos = () => {
   const [meusJogos, setMeusJogos] = React.useState([]);
+  const id_usuario = localStorage.getItem("id");
 
   React.useEffect(() => {
-    const jogos = JSON.parse(localStorage.getItem("jogos")) || [];
-    setMeusJogos(jogos);
-  }, []);
+    axios
+      .get("http://localhost:5000/buscarColecao/" + id_usuario)
+      .then((response) => {
+        setMeusJogos(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [id_usuario]);
 
   return (
     <>
