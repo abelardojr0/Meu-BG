@@ -38,11 +38,6 @@ const Login = ({ setLoginStatus }) => {
           if (email === usuario[2] && senha === usuario[3]) {
             localStorage.setItem("id", usuario[0]);
             localStorage.setItem("user", usuario[1]);
-            axios
-              .get("http://localhost:5000/buscarColecao/" + usuario[0])
-              .then((response) => {
-                localStorage.setItem("jogos", JSON.stringify(response.data));
-              });
             setLoginStatus(false);
           } else {
             setError(true);

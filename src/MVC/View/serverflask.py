@@ -8,7 +8,7 @@ try:
         host="localhost",
         database="Meu_BG",
         user="postgres",
-        password="123",
+        password="postgres",
         port="5432"
     )
     app = Flask(__name__)

@@ -5,7 +5,7 @@ import { HomeMostruarioContainer } from "./StylesHome";
 
 const Home = () => {
   const [listaJogos, setListaJogos] = React.useState([]);
-
+  const [intervalo, setIntervalo] = React.useState(21);
   async function buscarJogos(url) {
     const response = await fetch(url);
     const jsonResponse = await response.json();
@@ -13,10 +13,13 @@ const Home = () => {
     setListaJogos(resultado);
   }
   React.useEffect(() => {
-    const url =
-      "https://api.boardgameatlas.com/api/search?limit=100&client_id=ngvmQV0EYe";
+    const url = `https://api.boardgameatlas.com/api/search?limit=${intervalo}&client_id=ngvmQV0EYe`;
     buscarJogos(url);
-  }, []);
+  }, [intervalo]);
+
+  function mostrarMais() {
+    setIntervalo(intervalo + 21);
+  }
   if (listaJogos === []) return null;
   return (
     <>
@@ -36,6 +39,7 @@ const Home = () => {
               preco={jogo.price}
             />
           ))}
+        <button onClick={mostrarMais}>mais</button>
       </HomeMostruarioContainer>
     </>
   );

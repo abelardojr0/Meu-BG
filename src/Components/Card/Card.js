@@ -16,8 +16,6 @@ import jogadores from "../../Imagens/jogadores.png";
 import relogio from "../../Imagens/relogio.png";
 import idade from "../../Imagens/idade.png";
 import preco from "../../Imagens/preco.png";
-import Skeleton from "react-loading-skeleton";
-
 // const [jogos, setjogos] = React.useState([]);
 
 // function visualizarJogos() {
@@ -35,16 +33,17 @@ import Skeleton from "react-loading-skeleton";
 const Card = (dados) => {
   const [loginStatus, setLoginStatus] = React.useState(false);
   const [jogoAdicionado, setJogoAdicionado] = React.useState(false);
+  const [jogos, setJogos] = React.useState([]);
   const [dolar, setDolar] = React.useState();
   const logado = localStorage.getItem("user");
-  const id_logado = localStorage.getItem("id");
+  const id_usuario = localStorage.getItem("id");
 
   function converterParaReal(valor) {
     const valorConvertido = +valor * +dolar;
     return valorConvertido.toFixed(2);
   }
+
   React.useEffect(() => {
-    const jogos = JSON.parse(localStorage.getItem("jogos")) || [];
     fetch("https://economia.awesomeapi.com.br/last/USD-BRL")
       .then((response) => {
         return response.json();
@@ -52,12 +51,26 @@ const Card = (dados) => {
       .then((valorFinal) => {
         setDolar(valorFinal.USDBRL.high);
       });
+  }, []);
+
+  React.useEffect(() => {
+    axios
+      .get("http://localhost:5000/buscarColecao/" + id_usuario)
+      .then((response) => {
+        setJogos(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [id_usuario]);
+
+  React.useEffect(() => {
     jogos.forEach((jogo) => {
       if (dados.nome === jogo[1]) {
         setJogoAdicionado(true);
       }
     });
-  }, [dados.nome]);
+  }, [dados.nome, jogos]);
 
   function adicionar(e) {
     setJogoAdicionado(true);
@@ -73,7 +86,7 @@ const Card = (dados) => {
           jogadores_max: dados.jogadores_min,
           idade: dados.idade,
           preco: dados.preco,
-          id_usuario: id_logado,
+          id_usuario: id_usuario,
         })
         .then((response) => {
           console.log(response);
@@ -84,15 +97,9 @@ const Card = (dados) => {
     } else {
       setLoginStatus(true);
     }
-    // axios
-    //   .get("http://localhost:5000/buscarColecao/" + id_logado)
-    //   .then((response) => {
-    //     localStorage.setItem("jogos", JSON.stringify(response.data));
-    //   });
   }
   return (
     <CardConteiner>
-      <Skeleton height="100%" width="100%" />
       <CardImagem src={dados.imagem} alt="jogo" />
       <CardTitulo>{dados.nome}</CardTitulo>
       <CardListaDetalhes>

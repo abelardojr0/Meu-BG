@@ -75,6 +75,7 @@ export const HeaderUsuarioSeta = styled.img`
 `;
 
 export const HeaderMenuAberto = styled.div`
+  z-index: 3;
   background-color: red;
   width: 142px;
   border-radius: 0px 0px 15px 15px;
