@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "../../Components/Card/Card";
 import Header from "../../Components/Header/Header";
-import { HomeMostruarioContainer } from "./StylesHome";
+import { HomeMostrarMais, HomeMostruarioContainer } from "./StylesHome";
 
 const Home = () => {
   const [listaJogos, setListaJogos] = React.useState([]);
@@ -20,6 +20,7 @@ const Home = () => {
   function mostrarMais() {
     setIntervalo(intervalo + 21);
   }
+  console.log(listaJogos);
   if (listaJogos === []) return null;
   return (
     <>
@@ -39,8 +40,8 @@ const Home = () => {
               preco={jogo.price}
             />
           ))}
-        <button onClick={mostrarMais}>mais</button>
       </HomeMostruarioContainer>
+      <HomeMostrarMais onClick={mostrarMais}>Ver mais...</HomeMostrarMais>
     </>
   );
 };

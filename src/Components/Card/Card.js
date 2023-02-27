@@ -1,7 +1,6 @@
 import React from "react";
 import {
   CardBotao,
-  CardBotaoAdiconado,
   CardConteiner,
   CardImagem,
   CardInfosDivisoria,
@@ -11,7 +10,6 @@ import {
 } from "./StylesCard";
 import axios from "axios";
 import Login from "../Login/Login";
-import concluido from "../../Imagens/concluido.png";
 import jogadores from "../../Imagens/jogadores.png";
 import relogio from "../../Imagens/relogio.png";
 import idade from "../../Imagens/idade.png";
@@ -99,47 +97,80 @@ const Card = (dados) => {
     }
   }
   return (
-    <CardConteiner>
-      <CardImagem src={dados.imagem} alt="jogo" />
-      <CardTitulo>{dados.nome}</CardTitulo>
-      <CardListaDetalhes>
-        <CardInfosDivisoria>
-          <CardItemDetalhes>
-            <img src={relogio} alt="relogio icon" />
-            {dados.duracao_min}~{dados.duracao_max} min
-          </CardItemDetalhes>
-
-          <CardItemDetalhes>
-            <img src={jogadores} alt="jogadores icon" />
-            {dados.jogadores_min}-{dados.jogadores_max} jogadores
-          </CardItemDetalhes>
-        </CardInfosDivisoria>
-
-        <CardInfosDivisoria>
-          <CardItemDetalhes>
-            <img src={idade} alt="idade icon" />
-            {dados.idade} anos
-          </CardItemDetalhes>
-
-          <CardItemDetalhes>
-            <img src={preco} alt="preco icon" />
-            R$ {converterParaReal(dados.preco)}
-          </CardItemDetalhes>
-        </CardInfosDivisoria>
-      </CardListaDetalhes>
-      {jogoAdicionado ? (
-        <CardBotaoAdiconado>
-          <img src={concluido} alt="concluido" />
-        </CardBotaoAdiconado>
-      ) : (
-        <CardBotao onClick={adicionar}>Adicionar</CardBotao>
-      )}
-      {loginStatus && (
+    <>
+      {dados.minhaColecao && (
         <>
-          <Login setLoginStatus={setLoginStatus} />
+          <CardConteiner>
+            <CardImagem src={dados.imagem} alt="jogo" />
+            <CardTitulo>{dados.nome}</CardTitulo>
+            <CardListaDetalhes>
+              <CardInfosDivisoria>
+                <CardItemDetalhes>
+                  <img src={relogio} alt="relogio icon" />
+                  {dados.duracao_min}~{dados.duracao_max} min
+                </CardItemDetalhes>
+
+                <CardItemDetalhes>
+                  <img src={jogadores} alt="jogadores icon" />
+                  {dados.jogadores_min}-{dados.jogadores_max} jogadores
+                </CardItemDetalhes>
+              </CardInfosDivisoria>
+
+              <CardInfosDivisoria>
+                <CardItemDetalhes>
+                  <img src={idade} alt="idade icon" />
+                  {dados.idade} anos
+                </CardItemDetalhes>
+
+                <CardItemDetalhes>
+                  <img src={preco} alt="preco icon" />
+                  R$ {converterParaReal(dados.preco)}
+                </CardItemDetalhes>
+              </CardInfosDivisoria>
+            </CardListaDetalhes>
+          </CardConteiner>
         </>
       )}
-    </CardConteiner>
+      {!jogoAdicionado && (
+        <>
+          <CardConteiner>
+            <CardImagem src={dados.imagem} alt="jogo" />
+            <CardTitulo>{dados.nome}</CardTitulo>
+            <CardListaDetalhes>
+              <CardInfosDivisoria>
+                <CardItemDetalhes>
+                  <img src={relogio} alt="relogio icon" />
+                  {dados.duracao_min}~{dados.duracao_max} min
+                </CardItemDetalhes>
+
+                <CardItemDetalhes>
+                  <img src={jogadores} alt="jogadores icon" />
+                  {dados.jogadores_min}-{dados.jogadores_max} jogadores
+                </CardItemDetalhes>
+              </CardInfosDivisoria>
+
+              <CardInfosDivisoria>
+                <CardItemDetalhes>
+                  <img src={idade} alt="idade icon" />
+                  {dados.idade} anos
+                </CardItemDetalhes>
+
+                <CardItemDetalhes>
+                  <img src={preco} alt="preco icon" />
+                  R$ {converterParaReal(dados.preco)}
+                </CardItemDetalhes>
+              </CardInfosDivisoria>
+            </CardListaDetalhes>
+            <CardBotao onClick={adicionar}>Adicionar</CardBotao>
+            {loginStatus && (
+              <>
+                <Login setLoginStatus={setLoginStatus} />
+              </>
+            )}
+          </CardConteiner>
+        </>
+      )}
+    </>
   );
 };
 

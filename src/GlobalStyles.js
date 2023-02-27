@@ -5,6 +5,6 @@ body{
   height: 100vh;
   width: 100%;
   background-color: white;
-  background-color: #e7d8de;
+  background-color: #7d7575;
 }
 `;

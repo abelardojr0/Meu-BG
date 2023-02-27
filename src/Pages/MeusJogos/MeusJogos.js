@@ -34,6 +34,7 @@ const MeusJogos = () => {
               jogadores_max={jogo[6]}
               idade={jogo[7]}
               preco={jogo[8]}
+              minhaColecao={true}
             />
           ))}
       </MeusJogosContainer>

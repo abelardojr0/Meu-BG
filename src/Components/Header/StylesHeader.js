@@ -57,41 +57,42 @@ export const HeaderBotaoCadastrar = styled.button`
   }
 `;
 export const HeaderUsuarioLogado = styled.div`
-  background-color: red;
+  background-color: #0c1f24;
   padding: 0.5rem;
   color: white;
   font-size: 1rem;
-  border-radius: 15px 15px 0px 0px;
+  font-weight: bold;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
-`;
-export const HeaderUsuarioSeta = styled.img`
-  max-width: 20px;
-  height: 20px;
   cursor: pointer;
 `;
 
 export const HeaderMenuAberto = styled.div`
   z-index: 3;
-  background-color: red;
+  background-color: #e2e2e2;
   width: 142px;
-  border-radius: 0px 0px 15px 15px;
+  border-radius: 15px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
+  font-weight: bold;
   padding: 1rem;
   gap: 10px;
   position: absolute;
-  top: 68px;
+  top: 35px;
+  right: 130px;
 `;
 
 export const HeaderItensMenuAberto = styled(Link)`
   cursor: pointer;
-  color: white;
+  color: black;
   text-decoration: none;
   &:hover {
     text-decoration: underline;
@@ -101,6 +102,7 @@ export const HeaderItensMenuAberto = styled(Link)`
 export const HeaderPesquisarContainer = styled.form`
   margin-left: 50px;
 `;
+
 export const HeaderPesquisarContainerBarra = styled.div`
   display: flex;
   justify-content: center;

@@ -8,7 +8,7 @@ try:
         host="localhost",
         database="Meu_BG",
         user="postgres",
-        password="postgres",
+        password="123",
         port="5432"
     )
     app = Flask(__name__)
@@ -41,6 +41,17 @@ try:
         email = request.json['email']
         senha = request.json['senha']
         cur.execute("INSERT INTO usuario (nome, email, senha) VALUES (%s, %s, %s)", (nome, email, senha))
+        conn.commit()
+        return jsonify({'status': 'success'})
+    
+    @app.route('/atualizarUsuario', methods=['POST'])
+    def atualizar_user():
+        cur = conn.cursor()
+        nome = request.json['nome']
+        email = request.json['email']
+        senha = request.json['senha']
+        id_usuario = request.json['id_usuario']
+        cur.execute("UPDATE usuario SET nome=%s, email =%s, senha=%s WHERE id = %s", (nome, email, senha, id_usuario))
         conn.commit()
         return jsonify({'status': 'success'})
     

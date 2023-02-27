@@ -8,6 +8,7 @@ import Search from "./Pages/Search/Search";
 import Cadastro from "./Pages/Cadastro/Cadastro";
 import CadastroSucesso from "./Pages/Cadastro/CadastroSucesso/CadastroSucesso";
 import MinhaColecao from "./Pages/MinhaColecao/MinhaColecao";
+import MinhaConta from "./Pages/MinhaConta/MinhaConta";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/meusJogos" element={<MeusJogos />} />
           <Route path="/minhaColecao" element={<MinhaColecao />} />
+          <Route path="/minhaConta" element={<MinhaConta />} />
           <Route path="search" element={<Search />} />
           <Route path="/cadastro" element={<Cadastro />} />
           <Route path="/finalizado" element={<CadastroSucesso />} />

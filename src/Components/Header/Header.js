@@ -14,18 +14,14 @@ import {
   HeaderPesquisarContainerBarra,
   HeaderPesquisarInput,
   HeaderUsuarioLogado,
-  HeaderUsuarioSeta,
 } from "./StylesHeader";
 import logo from "../../Imagens/logo.png";
 import Login from "../Login/Login";
 import { Link, useNavigate } from "react-router-dom";
-import seta_baixo from "../../Imagens/seta_baixo.png";
-import seta_cima from "../../Imagens/seta_cima.png";
 
 const Header = () => {
   const [loginStatus, setLoginStatus] = React.useState(false);
   const [search, setSearch] = React.useState();
-  const [seta, setSeta] = React.useState(seta_baixo);
   const [ativa, setAtiva] = React.useState("");
   const [menuAberto, setMenuAberto] = React.useState(false);
   const logado = localStorage.getItem("user");
@@ -40,10 +36,8 @@ const Header = () => {
   }
   function abrirMenu() {
     if (!menuAberto) {
-      setSeta(seta_cima);
       setMenuAberto(true);
     } else {
-      setSeta(seta_baixo);
       setMenuAberto(false);
     }
   }
@@ -78,9 +72,8 @@ const Header = () => {
       <HeaderLogin>
         {logado ? (
           <>
-            <HeaderUsuarioLogado>
-              {logado}
-              <HeaderUsuarioSeta onClick={abrirMenu} src={seta} alt="seta" />
+            <HeaderUsuarioLogado onClick={abrirMenu}>
+              {logado[0].toLocaleUpperCase()}
             </HeaderUsuarioLogado>
             {menuAberto && (
               <>
@@ -88,7 +81,9 @@ const Header = () => {
                   <HeaderItensMenuAberto to="/minhaColecao">
                     Minha Coleção
                   </HeaderItensMenuAberto>
-                  <HeaderItensMenuAberto>Configurações</HeaderItensMenuAberto>
+                  <HeaderItensMenuAberto to="/minhaConta">
+                    Minha Conta
+                  </HeaderItensMenuAberto>
                   <HeaderItensMenuAberto onClick={deslogar}>
                     Sair
                   </HeaderItensMenuAberto>
@@ -106,29 +101,30 @@ const Header = () => {
             </Link>
           </>
         )}
+        <HeaderPesquisarContainer onSubmit={pesquisar}>
+          <HeaderPesquisarContainerBarra>
+            <HeaderPesquisarInput
+              autoFocus
+              className={ativa}
+              onBlur={esconderPesquisa}
+              type={"text"}
+              name={"pesquisar"}
+              id={"pesquisar"}
+              placeholder={"Buscar por jogos..."}
+              autoComplete="off"
+              onChange={(e) => setSearch(e.target.value)}
+              value={search}
+            />
+            <HeaderPesquisarBotao onClick={mostrarPesquisa} type="submit" />
+          </HeaderPesquisarContainerBarra>
+        </HeaderPesquisarContainer>
       </HeaderLogin>
+
       {loginStatus && (
         <>
           <Login setLoginStatus={setLoginStatus} />
         </>
       )}
-      <HeaderPesquisarContainer onSubmit={pesquisar}>
-        <HeaderPesquisarContainerBarra>
-          <HeaderPesquisarInput
-            autoFocus
-            className={ativa}
-            onBlur={esconderPesquisa}
-            type={"text"}
-            name={"pesquisar"}
-            id={"pesquisar"}
-            placeholder={"Buscar por filmes e séries..."}
-            autoComplete="off"
-            onChange={(e) => setSearch(e.target.value)}
-            value={search}
-          />
-          <HeaderPesquisarBotao onClick={mostrarPesquisa} type="submit" />
-        </HeaderPesquisarContainerBarra>
-      </HeaderPesquisarContainer>
     </HeaderComponent>
   );
 };

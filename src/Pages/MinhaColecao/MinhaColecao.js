@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../../Components/Header/Header";
 import {
+  MinhaColecaoBotao,
   MinhaColecaoCard,
   MinhaColecaoCardTitulo,
   MinhaColecaoContainer,
@@ -9,10 +10,17 @@ import axios from "axios";
 const MinhaColecao = () => {
   const [meusJogos, setMeusJogos] = React.useState([]);
   const id_usuario = localStorage.getItem("id");
+
   React.useEffect(() => {
-    const jogos = JSON.parse(localStorage.getItem("jogos")) || [];
-    setMeusJogos(jogos);
-  }, []);
+    axios
+      .get("http://localhost:5000/buscarColecao/" + id_usuario)
+      .then((response) => {
+        setMeusJogos(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [id_usuario]);
 
   return (
     <>
@@ -23,7 +31,7 @@ const MinhaColecao = () => {
             <MinhaColecaoCard>
               <img src={jogo[2]} alt="foto" />
               <MinhaColecaoCardTitulo>{jogo[1]}</MinhaColecaoCardTitulo>
-              <button
+              <MinhaColecaoBotao
                 onClick={() => {
                   axios
                     .post("http://localhost:5000/deletarJogo", {
@@ -31,19 +39,7 @@ const MinhaColecao = () => {
                     })
                     .then((response) => {
                       console.log(response);
-                      axios
-                        .get(
-                          "http://localhost:5000/buscarColecao/" + id_usuario
-                        )
-                        .then((response) => {
-                          localStorage.setItem(
-                            "jogos",
-                            JSON.stringify(response.data)
-                          );
-                        })
-                        .catch((error) => {
-                          console.log(error);
-                        });
+                      window.location.reload();
                     })
                     .catch((error) => {
                       console.log(error);
@@ -51,7 +47,7 @@ const MinhaColecao = () => {
                 }}
               >
                 Excluir
-              </button>
+              </MinhaColecaoBotao>
             </MinhaColecaoCard>
           ))}
       </MinhaColecaoContainer>

@@ -16,26 +16,26 @@ const Cadastro = () => {
   const [nome, setNome] = React.useState();
   const [email, setEmail] = React.useState();
   const [senha, setSenha] = React.useState();
-  const [msgEmailError, setMsgEmailError] = React.useState(false);
+  const [msgEmailError, setMsgEmailError] = React.useState(null);
+  // const [teste, setTeste] = React.useState(null);
   const navigate = useNavigate();
 
   function finalizar(e) {
     e.preventDefault();
-
     axios
       .get("http://localhost:5000/buscarUsuarios")
       .then((response) => {
         response.data.forEach((usuario) => {
           if (email === usuario[2]) {
             setMsgEmailError(true);
+            // setTeste(true);
           }
         });
       })
       .catch((error) => {
         console.log(error);
       });
-
-    if (!msgEmailError) {
+    if (msgEmailError !== true) {
       const infos = {
         nome,
         email,
@@ -55,6 +55,9 @@ const Cadastro = () => {
       navigate("/finalizado");
     }
   }
+  // if (teste) {
+
+  // }
 
   return (
     <>

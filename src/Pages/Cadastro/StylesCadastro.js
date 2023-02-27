@@ -8,7 +8,7 @@ export const ContainerFormulario = styled.form`
   flex-direction: column;
   margin: 0 auto;
   height: 100vh;
-  margin-top: 100px;
+  margin-top: 50px;
 `;
 
 export const TituloFormulario = styled.h2`

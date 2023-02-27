@@ -6,6 +6,6 @@ export const MeusJogosContainer = styled.section`
   align-items: center;
   margin: 0 auto;
   gap: 10px;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   max-width: 960px;
 `;
