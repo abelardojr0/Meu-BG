@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import lupa from "../../Imagens/lupa2.png";
+import lupa from "../../Imagens/lupa.png";
 export const HeaderComponent = styled.header`
   width: 100%;
   height: 100px;
@@ -26,6 +26,14 @@ export const HeaderLi = styled(Link)`
   &:hover {
     text-decoration: underline;
   }
+`;
+
+export const HeaderDivisoria = styled.div`
+  margin-left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
 `;
 
 export const HeaderLogin = styled.div`
@@ -86,8 +94,8 @@ export const HeaderMenuAberto = styled.div`
   padding: 1rem;
   gap: 10px;
   position: absolute;
-  top: 35px;
-  right: 130px;
+  top: 75px;
+  right: 20px;
 `;
 
 export const HeaderItensMenuAberto = styled(Link)`
@@ -112,16 +120,22 @@ export const HeaderPesquisarContainerBarra = styled.div`
 `;
 export const HeaderPesquisarInput = styled.input`
   font-size: 1rem;
-  padding: 0.6rem;
+  /* padding: 0.6rem; */
   border-radius: 15px;
   outline: none;
   border: 2px solid #f9f9f9;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
   display: none;
   width: 300px;
+  background-color: transparent;
+  padding: 1rem;
+  color: white;
   &.ativo {
     display: block;
     animation: show-rigth 0.5s forwards ease-in-out;
+  }
+  &::placeholder {
+    color: white;
   }
   @keyframes show-rigth {
     from {
@@ -143,8 +157,8 @@ export const HeaderPesquisarBotao = styled.button`
   background-color: transparent;
   border: none;
   padding: 0.5rem;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   position: absolute;
   right: 20px;
   cursor: pointer;

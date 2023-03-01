@@ -3,6 +3,7 @@ import {
   HeaderBotaoCadastrar,
   HeaderBotaoEntrar,
   HeaderComponent,
+  HeaderDivisoria,
   HeaderItensMenuAberto,
   HeaderLi,
   HeaderLista,
@@ -64,12 +65,32 @@ const Header = () => {
   }
   return (
     <HeaderComponent>
-      <HeaderLogo src={logo} alt="logo" />
-      <HeaderLista>
-        <HeaderLi to="/">Home</HeaderLi>
-        <HeaderLi to="/meusJogos">Meus Jogos</HeaderLi>
-      </HeaderLista>
+      <HeaderDivisoria>
+        <HeaderLogo src={logo} alt="logo" />
+        <HeaderLista>
+          <HeaderLi to="/">Home</HeaderLi>
+          <HeaderLi to="/meusJogos">Meus Jogos</HeaderLi>
+        </HeaderLista>
+      </HeaderDivisoria>
       <HeaderLogin>
+        <HeaderPesquisarContainer onSubmit={pesquisar}>
+          <HeaderPesquisarContainerBarra>
+            <HeaderPesquisarInput
+              autoFocus
+              className={ativa}
+              onBlur={esconderPesquisa}
+              type={"text"}
+              name={"pesquisar"}
+              id={"pesquisar"}
+              placeholder={"Buscar por jogos..."}
+              autoComplete="off"
+              onChange={(e) => setSearch(e.target.value)}
+              value={search}
+            />
+            <HeaderPesquisarBotao onClick={mostrarPesquisa} type="submit" />
+          </HeaderPesquisarContainerBarra>
+        </HeaderPesquisarContainer>
+
         {logado ? (
           <>
             <HeaderUsuarioLogado onClick={abrirMenu}>
@@ -101,23 +122,6 @@ const Header = () => {
             </Link>
           </>
         )}
-        <HeaderPesquisarContainer onSubmit={pesquisar}>
-          <HeaderPesquisarContainerBarra>
-            <HeaderPesquisarInput
-              autoFocus
-              className={ativa}
-              onBlur={esconderPesquisa}
-              type={"text"}
-              name={"pesquisar"}
-              id={"pesquisar"}
-              placeholder={"Buscar por jogos..."}
-              autoComplete="off"
-              onChange={(e) => setSearch(e.target.value)}
-              value={search}
-            />
-            <HeaderPesquisarBotao onClick={mostrarPesquisa} type="submit" />
-          </HeaderPesquisarContainerBarra>
-        </HeaderPesquisarContainer>
       </HeaderLogin>
 
       {loginStatus && (

@@ -119,12 +119,12 @@ const Card = (dados) => {
               <CardInfosDivisoria>
                 <CardItemDetalhes>
                   <img src={idade} alt="idade icon" />
-                  {dados.idade} anos
+                  {dados.idade} anos +
                 </CardItemDetalhes>
 
                 <CardItemDetalhes>
                   <img src={preco} alt="preco icon" />
-                  R$ {converterParaReal(dados.preco)}
+                  {converterParaReal(dados.preco)}
                 </CardItemDetalhes>
               </CardInfosDivisoria>
             </CardListaDetalhes>
@@ -140,24 +140,24 @@ const Card = (dados) => {
               <CardInfosDivisoria>
                 <CardItemDetalhes>
                   <img src={relogio} alt="relogio icon" />
-                  {dados.duracao_min}~{dados.duracao_max} min
+                  {dados.duracao_min}~{dados.duracao_max}
                 </CardItemDetalhes>
 
                 <CardItemDetalhes>
                   <img src={jogadores} alt="jogadores icon" />
-                  {dados.jogadores_min}-{dados.jogadores_max} jogadores
+                  {dados.jogadores_min}-{dados.jogadores_max}
                 </CardItemDetalhes>
               </CardInfosDivisoria>
 
               <CardInfosDivisoria>
                 <CardItemDetalhes>
                   <img src={idade} alt="idade icon" />
-                  {dados.idade} anos
+                  {dados.idade} +
                 </CardItemDetalhes>
 
                 <CardItemDetalhes>
                   <img src={preco} alt="preco icon" />
-                  R$ {converterParaReal(dados.preco)}
+                  {converterParaReal(dados.preco)}
                 </CardItemDetalhes>
               </CardInfosDivisoria>
             </CardListaDetalhes>
