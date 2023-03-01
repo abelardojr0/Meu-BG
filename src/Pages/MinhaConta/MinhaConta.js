@@ -2,13 +2,20 @@ import React from "react";
 import Header from "../../Components/Header/Header";
 import Input from "../../Components/Input/Input";
 import axios from "axios";
-import { MinhaContaBotao, MinhaContaContainer } from "./StylesMinhaConta";
+import {
+  MinhaContaBotao,
+  MinhaContaBotaoDeletar,
+  MinhaContaContainer,
+} from "./StylesMinhaConta";
+import { useNavigate } from "react-router-dom";
 
 const MinhaConta = () => {
   const [nome, setNome] = React.useState();
   const [email, setEmail] = React.useState();
   const [senha, setSenha] = React.useState();
   const id_usuario = localStorage.getItem("id");
+  const navigate = useNavigate();
+
   function atualizarBanco(e) {
     localStorage.setItem("user", nome);
     e.preventDefault();

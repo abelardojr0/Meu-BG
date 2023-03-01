@@ -10,6 +10,7 @@ import {
   HeaderLogin,
   HeaderLogo,
   HeaderMenuAberto,
+  HeaderMenuAbertoCabeçalho,
   HeaderPesquisarBotao,
   HeaderPesquisarContainer,
   HeaderPesquisarContainerBarra,
@@ -19,6 +20,9 @@ import {
 import logo from "../../Imagens/logo.png";
 import Login from "../Login/Login";
 import { Link, useNavigate } from "react-router-dom";
+import sair from "../../Imagens/sair.png";
+import conta from "../../Imagens/conta.png";
+import jogos from "../../Imagens/jogos.png";
 
 const Header = () => {
   const [loginStatus, setLoginStatus] = React.useState(false);
@@ -42,9 +46,11 @@ const Header = () => {
       setMenuAberto(false);
     }
   }
+  function editarConta() {
+    navigate("/minhaConta");
+  }
   function deslogar() {
     localStorage.clear();
-    navigate("/");
   }
   function pesquisar(e) {
     e.preventDefault();
@@ -99,13 +105,24 @@ const Header = () => {
             {menuAberto && (
               <>
                 <HeaderMenuAberto>
-                  <HeaderItensMenuAberto to="/minhaColecao">
-                    Minha Coleção
+                  <HeaderMenuAbertoCabeçalho>
+                    <HeaderUsuarioLogado onClick={editarConta}>
+                      {logado[0].toLocaleUpperCase()}
+                    </HeaderUsuarioLogado>
+                    <HeaderItensMenuAberto to="/minhaConta">
+                      {logado}
+                    </HeaderItensMenuAberto>
+                  </HeaderMenuAbertoCabeçalho>
+                  <HeaderItensMenuAberto to="/meusJogos">
+                    <img src={jogos} alt="jogos" />
+                    Meus Jogos
                   </HeaderItensMenuAberto>
                   <HeaderItensMenuAberto to="/minhaConta">
+                    <img src={conta} alt="conta" />
                     Minha Conta
                   </HeaderItensMenuAberto>
                   <HeaderItensMenuAberto onClick={deslogar}>
+                    <img src={sair} alt="sair" />
                     Sair
                   </HeaderItensMenuAberto>
                 </HeaderMenuAberto>

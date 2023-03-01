@@ -9,3 +9,10 @@ export const MeusJogosContainer = styled.section`
   grid-template-columns: repeat(5, 1fr);
   max-width: 960px;
 `;
+export const MeusJogosCarregando = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 960px;
+  height: 100vh;
+`;

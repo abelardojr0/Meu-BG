@@ -102,8 +102,15 @@ export const HeaderItensMenuAberto = styled(Link)`
   cursor: pointer;
   color: black;
   text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   &:hover {
     text-decoration: underline;
+  }
+  img {
+    max-width: 20px;
   }
 `;
 
@@ -165,4 +172,14 @@ export const HeaderPesquisarBotao = styled.button`
   &:hover {
     transform: scale(1.1);
   }
+`;
+
+export const HeaderMenuAbertoCabeçalho = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 2px solid black;
+  padding-bottom: 10px;
+  width: 100%;
 `;

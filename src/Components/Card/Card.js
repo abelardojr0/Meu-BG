@@ -1,8 +1,12 @@
 import React from "react";
 import {
   CardBotao,
+  CardCarregando,
+  CardCarregandoReduzido,
   CardConteiner,
+  CardConteinerReduzido,
   CardImagem,
+  CardImagemMaior,
   CardInfosDivisoria,
   CardItemDetalhes,
   CardListaDetalhes,
@@ -31,7 +35,7 @@ import preco from "../../Imagens/preco.png";
 const Card = (dados) => {
   const [loginStatus, setLoginStatus] = React.useState(false);
   const [jogoAdicionado, setJogoAdicionado] = React.useState(false);
-  const [jogos, setJogos] = React.useState([]);
+  const [carregando, setCarregando] = React.useState(true);
   const [dolar, setDolar] = React.useState();
   const logado = localStorage.getItem("user");
   const id_usuario = localStorage.getItem("id");
@@ -52,28 +56,27 @@ const Card = (dados) => {
   }, []);
 
   React.useEffect(() => {
-    axios
-      .get("http://localhost:5000/buscarColecao/" + id_usuario)
-      .then((response) => {
-        setJogos(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [id_usuario]);
-
-  React.useEffect(() => {
-    jogos.forEach((jogo) => {
-      if (dados.nome === jogo[1]) {
-        setJogoAdicionado(true);
-      }
-    });
-  }, [dados.nome, jogos]);
+    if (id_usuario) {
+      axios
+        .get("http://localhost:5000/buscarColecao/" + id_usuario)
+        .then((response) => {
+          response.data.forEach((jogo) => {
+            if (dados.nome === jogo[1]) {
+              setJogoAdicionado(true);
+            }
+            setCarregando(false);
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [id_usuario, dados.nome]);
 
   function adicionar(e) {
-    setJogoAdicionado(true);
     e.preventDefault();
     if (logado) {
+      setJogoAdicionado(true);
       axios
         .post("http://localhost:5000/insert", {
           nome: dados.nome,
@@ -96,9 +99,21 @@ const Card = (dados) => {
       setLoginStatus(true);
     }
   }
+  function remover() {
+    axios
+      .post("http://localhost:5000/deletarJogo", {
+        id: dados.id,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   return (
     <>
-      {dados.minhaColecao && (
+      {dados.minhaColecao && !carregando && (
         <>
           <CardConteiner>
             <CardImagem src={dados.imagem} alt="jogo" />
@@ -128,10 +143,12 @@ const Card = (dados) => {
                 </CardItemDetalhes>
               </CardInfosDivisoria>
             </CardListaDetalhes>
+            <CardBotao onClick={remover}>Remover</CardBotao>
           </CardConteiner>
         </>
       )}
-      {!jogoAdicionado && (
+      {carregando && <CardCarregando />}
+      {!jogoAdicionado && !carregando && (
         <>
           <CardConteiner>
             <CardImagem src={dados.imagem} alt="jogo" />

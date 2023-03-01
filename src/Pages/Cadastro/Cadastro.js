@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Botao,
+  CadastroMsgDeErro,
   ContainerFormulario,
   FormularioJaTenhoConta,
   FormularioJaTenhoContaTitulo,
@@ -16,8 +17,7 @@ const Cadastro = () => {
   const [nome, setNome] = React.useState();
   const [email, setEmail] = React.useState();
   const [senha, setSenha] = React.useState();
-  const [msgEmailError, setMsgEmailError] = React.useState(null);
-  // const [teste, setTeste] = React.useState(null);
+  const [msgEmailError, setMsgEmailError] = React.useState(false);
   const navigate = useNavigate();
 
   function finalizar(e) {
@@ -25,43 +25,39 @@ const Cadastro = () => {
     axios
       .get("http://localhost:5000/buscarUsuarios")
       .then((response) => {
-        response.data.forEach((usuario) => {
-          if (email === usuario[2]) {
-            setMsgEmailError(true);
-            // setTeste(true);
-          }
-        });
+        const result = response.data.filter((usuario) => email === usuario[2]);
+
+        if (result.length === 0) {
+          const infos = {
+            nome,
+            email,
+            senha,
+          };
+          axios
+            .post("http://localhost:5000/cadastrar", infos)
+            .then((response) => {
+              console.log(response);
+              setNome("");
+              setEmail("");
+              setSenha("");
+              navigate("/finalizado");
+            })
+            .catch((error) => {
+              console.log("Deu erro: " + error);
+            });
+        } else {
+          setMsgEmailError(true);
+        }
       })
       .catch((error) => {
         console.log(error);
       });
-    if (msgEmailError !== true) {
-      const infos = {
-        nome,
-        email,
-        senha,
-      };
-      axios
-        .post("http://localhost:5000/cadastrar", infos)
-        .then((response) => {
-          console.log(response);
-          setNome("");
-          setEmail("");
-          setSenha("");
-        })
-        .catch((error) => {
-          console.log("Deu erro: " + error);
-        });
-      navigate("/finalizado");
-    }
   }
-  // if (teste) {
-
-  // }
 
   return (
     <>
       <Header />
+      {msgEmailError && <CadastroMsgDeErro>Email já existe!</CadastroMsgDeErro>}
       <ContainerFormulario onSubmit={finalizar}>
         <TituloFormulario>Dados do cadastro</TituloFormulario>
         <SubtituloFormulario>Dados Pessoais</SubtituloFormulario>
@@ -85,7 +81,6 @@ const Cadastro = () => {
           required
           setDados={setEmail}
         />
-        {msgEmailError && <p>Email já existe!</p>}
         <Input
           htmlFor={"senha"}
           texto={"Senha *"}

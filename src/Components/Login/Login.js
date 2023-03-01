@@ -9,6 +9,7 @@ import {
   LoginLembrarLabel,
   LoginModal,
   LoginModalContainer,
+  LoginMsgErro,
   LoginTitulo,
 } from "./StylesLogin";
 import axios from "axios";
@@ -57,11 +58,11 @@ const Login = ({ setLoginStatus }) => {
           X
         </LoginBotaoFechar>
 
-        <LoginFormulario>
+        <LoginFormulario onSubmit={verificarLogin}>
           <LoginTitulo>Entrar</LoginTitulo>
           <Input
             htmlFor={"userEmail"}
-            texto={"Usuário/E-mail *"}
+            texto={"E-mail *"}
             tipo={"text"}
             nome={"userEmail"}
             id={"userEmail"}
@@ -79,7 +80,7 @@ const Login = ({ setLoginStatus }) => {
             required
             setDados={setSenha}
           />
-          {error && <p>Email ou senha incorretos</p>}
+          {error && <LoginMsgErro>Email ou senha incorretos</LoginMsgErro>}
           <LoginLembrarDivisao>
             <LoginLembrarInput
               type={"checkbox"}
@@ -89,7 +90,7 @@ const Login = ({ setLoginStatus }) => {
             <LoginLembrarLabel htmlFor={"lembrar"}>Lembre-me</LoginLembrarLabel>
           </LoginLembrarDivisao>
 
-          <LoginBotaoEntrar onClick={verificarLogin}>Entrar</LoginBotaoEntrar>
+          <LoginBotaoEntrar>Entrar</LoginBotaoEntrar>
         </LoginFormulario>
       </LoginModal>
     </LoginModalContainer>

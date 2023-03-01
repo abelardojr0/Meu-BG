@@ -25,3 +25,10 @@ export const HomeMostrarMais = styled.button`
     transform: scale(1.05);
   }
 `;
+export const HomeCarregando = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 960px;
+  height: 100vh;
+`;

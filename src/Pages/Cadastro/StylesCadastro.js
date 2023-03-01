@@ -8,12 +8,11 @@ export const ContainerFormulario = styled.form`
   flex-direction: column;
   margin: 0 auto;
   height: 100vh;
-  margin-top: 50px;
 `;
 
 export const TituloFormulario = styled.h2`
   margin-top: 20px;
-  color: #00aad9;
+  color: #0c1f24;
   font-size: 2rem;
   font-weight: bold;
 `;
@@ -23,12 +22,12 @@ export const SubtituloFormulario = styled.h3`
   color: #dde1d2;
   font-size: 1.3rem;
   margin-bottom: 20px;
-  margin-top: 40px;
+  margin-top: 20px;
 `;
 
 export const Botao = styled.button`
   color: #fff;
-  background-color: #00aad9;
+  background-color: #0c1f24;
   padding: 1rem 2rem;
   text-align: center;
   font-size: 1.5rem;
@@ -46,7 +45,7 @@ export const FormularioJaTenhoConta = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 100px;
+  margin-top: 50px;
 `;
 
 export const FormularioJaTenhoContaTitulo = styled.h2`
@@ -55,10 +54,12 @@ export const FormularioJaTenhoContaTitulo = styled.h2`
   margin-bottom: 20px;
 `;
 
-export const FormularioSociaisCadastro = styled.div`
+export const CadastroMsgDeErro = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  width: 97.7%;
+  background-color: #e3aa45;
+  padding: 1rem;
+  margin: 0 auto;
 `;

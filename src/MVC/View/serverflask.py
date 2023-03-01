@@ -63,6 +63,15 @@ try:
         conn.commit()
         return jsonify({'status': 'success'})
     
+    @app.route('/deletarUsuario', methods=['POST'])
+    def deletar_usuario():
+        cur = conn.cursor()
+        id_usuario = request.json['id_usuario']
+        print(id)
+        cur.execute(f"DELETE FROM usuario WHERE id = '{id_usuario}'")
+        conn.commit()
+        return jsonify({'status': 'success'})
+    
     @app.route('/buscarUsuarios', methods=['GET'])
     def get_tabela():
         cur = conn.cursor()
