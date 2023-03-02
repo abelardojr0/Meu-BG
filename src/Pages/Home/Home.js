@@ -3,14 +3,16 @@ import Card from "../../Components/Card/Card";
 import Header from "../../Components/Header/Header";
 import {
   HomeCarregando,
+  HomeCarregandoMais,
   HomeMostrarMais,
   HomeMostruarioContainer,
 } from "./StylesHome";
 import { ClipLoader } from "react-spinners";
 const Home = () => {
   const [listaJogos, setListaJogos] = React.useState([]);
-  const [intervalo, setIntervalo] = React.useState(21);
+  const [intervalo, setIntervalo] = React.useState(20);
   const [carregando, setCarregando] = React.useState(true);
+  const [carregandoMais, setCarregandoMais] = React.useState(true);
 
   async function buscarJogos(url) {
     const response = await fetch(url);
@@ -18,6 +20,7 @@ const Home = () => {
     const resultado = jsonResponse.games;
     setListaJogos(resultado);
     setCarregando(false);
+    setCarregandoMais(false);
   }
   React.useEffect(() => {
     const url = `https://api.boardgameatlas.com/api/search?limit=${intervalo}&client_id=ngvmQV0EYe`;
@@ -25,7 +28,8 @@ const Home = () => {
   }, [intervalo]);
 
   function mostrarMais() {
-    setIntervalo(intervalo + 21);
+    setIntervalo(intervalo + 20);
+    setCarregandoMais(true);
   }
   if (listaJogos === []) return null;
   return (
@@ -40,7 +44,7 @@ const Home = () => {
           </>
         )}
         {listaJogos &&
-          !carregando &&
+          carregando === false &&
           listaJogos.map((jogo) => (
             <Card
               key={jogo.name}
@@ -56,6 +60,14 @@ const Home = () => {
           ))}
       </HomeMostruarioContainer>
       <HomeMostrarMais onClick={mostrarMais}>Ver mais...</HomeMostrarMais>
+      {carregandoMais && (
+        <>
+          <HomeCarregandoMais>
+            <ClipLoader size={80} />
+          </HomeCarregandoMais>
+        </>
+      )}
+      {}
     </>
   );
 };

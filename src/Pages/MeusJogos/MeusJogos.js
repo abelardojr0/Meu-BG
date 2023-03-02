@@ -29,8 +29,7 @@ const MeusJogos = () => {
         setLoginStatus(false);
       }
     }
-    console.log(meusJogos);
-  }, [id_usuario]);
+  }, [id_usuario, meusJogos]);
   return (
     <>
       <Header />

@@ -119,7 +119,7 @@ const Header = () => {
                   </HeaderItensMenuAberto>
                   <HeaderItensMenuAberto to="/minhaConta">
                     <img src={conta} alt="conta" />
-                    Minha Conta
+                    Configurações da Conta
                   </HeaderItensMenuAberto>
                   <HeaderItensMenuAberto onClick={deslogar}>
                     <img src={sair} alt="sair" />

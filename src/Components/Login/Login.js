@@ -4,6 +4,7 @@ import {
   LoginBotaoEntrar,
   LoginBotaoFechar,
   LoginFormulario,
+  LoginImagemIcon,
   LoginLembrarDivisao,
   LoginLembrarInput,
   LoginLembrarLabel,
@@ -14,6 +15,7 @@ import {
 } from "./StylesLogin";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import entrar from "../../Imagens/entrar.png";
 
 const Login = ({ setLoginStatus }) => {
   const [email, setEmail] = React.useState();
@@ -27,6 +29,7 @@ const Login = ({ setLoginStatus }) => {
       e.target.getAttribute("id") === "fechar"
     ) {
       setLoginStatus(false);
+      navigate("/");
     }
   }
 
@@ -90,7 +93,9 @@ const Login = ({ setLoginStatus }) => {
             <LoginLembrarLabel htmlFor={"lembrar"}>Lembre-me</LoginLembrarLabel>
           </LoginLembrarDivisao>
 
-          <LoginBotaoEntrar>Entrar</LoginBotaoEntrar>
+          <LoginBotaoEntrar>
+            <LoginImagemIcon src={entrar} alt="icon-entrar" /> Entrar
+          </LoginBotaoEntrar>
         </LoginFormulario>
       </LoginModal>
     </LoginModalContainer>

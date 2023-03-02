@@ -32,3 +32,11 @@ export const HomeCarregando = styled.section`
   width: 960px;
   height: 100vh;
 `;
+
+export const HomeCarregandoMais = styled.div`
+  display: block;
+  width: 100%;
+  height: 200px;
+  text-align: center;
+  margin-top: 20px;
+`;

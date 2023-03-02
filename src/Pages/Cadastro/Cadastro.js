@@ -12,12 +12,15 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Header from "../../Components/Header/Header";
 import Input from "../../Components/Input/Input";
+import Login from "../../Components/Login/Login";
 
 const Cadastro = () => {
   const [nome, setNome] = React.useState();
   const [email, setEmail] = React.useState();
   const [senha, setSenha] = React.useState();
   const [msgEmailError, setMsgEmailError] = React.useState(false);
+  const [loginStatus, setLoginStatus] = React.useState(false);
+  const [login, setLogin] = React.useState(false);
   const navigate = useNavigate();
 
   function finalizar(e) {
@@ -54,6 +57,10 @@ const Cadastro = () => {
       });
   }
 
+  function abrirLogin(e) {
+    e.preventDefault();
+    setLogin(true);
+  }
   return (
     <>
       <Header />
@@ -102,14 +109,18 @@ const Cadastro = () => {
           setDados={setSenha}
         />
         <Botao type="submit">Cadastrar</Botao>
-
-        <FormularioJaTenhoConta>
-          <FormularioJaTenhoContaTitulo>
-            Já possui uma conta?
-          </FormularioJaTenhoContaTitulo>
-          <Botao>Entrar</Botao>
-        </FormularioJaTenhoConta>
       </ContainerFormulario>
+      <FormularioJaTenhoConta>
+        <FormularioJaTenhoContaTitulo>
+          Já possui uma conta?
+        </FormularioJaTenhoContaTitulo>
+        <Botao onClick={abrirLogin}>Entrar</Botao>
+      </FormularioJaTenhoConta>
+      {login && (
+        <>
+          <Login setLoginStatus={setLoginStatus} />
+        </>
+      )}
     </>
   );
 };

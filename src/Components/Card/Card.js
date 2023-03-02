@@ -2,11 +2,8 @@ import React from "react";
 import {
   CardBotao,
   CardCarregando,
-  CardCarregandoReduzido,
   CardConteiner,
-  CardConteinerReduzido,
   CardImagem,
-  CardImagemMaior,
   CardInfosDivisoria,
   CardItemDetalhes,
   CardListaDetalhes,
@@ -64,12 +61,14 @@ const Card = (dados) => {
             if (dados.nome === jogo[1]) {
               setJogoAdicionado(true);
             }
-            setCarregando(false);
           });
+          setCarregando(false);
         })
         .catch((error) => {
           console.log(error);
         });
+    } else {
+      setCarregando(false);
     }
   }, [id_usuario, dados.nome]);
 
@@ -93,7 +92,7 @@ const Card = (dados) => {
           console.log(response);
         })
         .catch((error) => {
-          console.log("Deu erro na parada: " + error);
+          console.log("Error: " + error);
         });
     } else {
       setLoginStatus(true);

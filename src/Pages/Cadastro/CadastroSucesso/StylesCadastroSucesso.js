@@ -10,6 +10,7 @@ export const SectionSucesso = styled.section`
   flex-direction: column;
   border-radius: 15px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+  background-color: white;
   max-width: 1000px;
   height: 50vh;
 `;

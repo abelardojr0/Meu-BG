@@ -7,7 +7,6 @@ export const ContainerFormulario = styled.form`
   align-items: center;
   flex-direction: column;
   margin: 0 auto;
-  height: 100vh;
 `;
 
 export const TituloFormulario = styled.h2`
@@ -46,6 +45,9 @@ export const FormularioJaTenhoConta = styled.div`
   align-items: center;
   flex-direction: column;
   margin-top: 50px;
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 100px;
 `;
 
 export const FormularioJaTenhoContaTitulo = styled.h2`
