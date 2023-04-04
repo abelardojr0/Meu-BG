@@ -6,7 +6,7 @@
 
 # :door: Descrição do Projeto
 
-Projeto desenvolvido em React com o objetivo de praticar apreendizado, se trata de uma página web onde colecionadores de jogos de tabuleiro podem catalogar sua coleção.
+Projeto desenvolvido em React com o objetivo de praticar apreendizado, se trata de uma página web onde colecionadores de jogos de tabuleiro podem catalogar sua coleção!
 
 
 
